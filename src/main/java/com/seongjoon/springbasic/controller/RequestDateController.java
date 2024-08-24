@@ -2,6 +2,8 @@ package com.seongjoon.springbasic.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -65,4 +67,34 @@ public class RequestDateController {
   ) {
     return "another2";
   }
+}
+
+    // @RequestBody() :
+    // - POST, PUT, PATCH처럼 Request Body로 데이터를 전송하는 메서드에서 데이터를 읽기 위한 방법
+    @PostMapping("/request-body")
+    public String requestBody(
+        // @RequestBody String requestBody
+        @RequestBody SampleDto requestBody
+    ) {
+
+        return "Request Body data : " + requestBody.getName() + ", " + requestBody.getAge();
+    }
+
+    @PostMapping("/validation")
+    public String validation(
+        @RequestBody @Valid Validation requestBody
+    ) {
+        return "정상";
+    }
+
+// DTO (Data Transfer Object) :
+// - 데이터를 서로 다른 계층간에 전송하기 위한 객체
+// - 캡슐화가 되어있음, 비즈니스 로직은 포함하지 않고 private 필드와 생성자, getter, setter만 존재
+@getter
+@setter
+@NoArgsConstructor
+@AllArgsConstructo1r
+class SampleDto {
+    private String name;
+    private int age;
 }
