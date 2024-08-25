@@ -3,7 +3,7 @@ package com.seongjoon.springbasic;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-improt com.seongjoon.springbasic.dto.Lombok;
+import com.seongjoon.springbasic.dto.Lombok;
 
 @SpringBootApplication
 public class SpringbasicApplication {

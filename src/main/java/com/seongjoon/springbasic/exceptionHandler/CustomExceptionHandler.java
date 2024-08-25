@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 // @RestControllerAdvice: RestController에서 발생하는 특정 상황에 대해 처리하는 클래스로 지정
+// @RestControllerAdvice: RestController에서 발생하는 특정 상황에 대해 처리하는 클래스로 지정
 @RestControllerAdvice
 public class CustomExceptionHandler {
     

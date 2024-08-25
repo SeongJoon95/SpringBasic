@@ -8,6 +8,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.seongjoon.springbasic.dto.Validation;
+
+import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 // JSON 방식으로 받아오기 위한 @RestController
 @RestController
 // http://localhost:4000/request-data/**
@@ -20,7 +28,7 @@ public class RequestDateController {
 
   // GET http://localhost:4000/request-data/request-param
   @GetMapping("/request-param")
-  // http://localhost:4000/request-data/request-param?name=홍길동&age=30
+  // http://localhost:4000/request-data/request-param?name=홍길동&age=30f
   public String requestParam(
       // @RequestParam(name="name") String name,
     @RequestParam("name") String name,
@@ -67,7 +75,7 @@ public class RequestDateController {
   ) {
     return "another2";
   }
-}
+
 
     // @RequestBody() :
     // - POST, PUT, PATCH처럼 Request Body로 데이터를 전송하는 메서드에서 데이터를 읽기 위한 방법
@@ -86,14 +94,15 @@ public class RequestDateController {
     ) {
         return "정상";
     }
+}
 
 // DTO (Data Transfer Object) :
 // - 데이터를 서로 다른 계층간에 전송하기 위한 객체
 // - 캡슐화가 되어있음, 비즈니스 로직은 포함하지 않고 private 필드와 생성자, getter, setter만 존재
-@getter
-@setter
+@Getter
+@Setter
 @NoArgsConstructor
-@AllArgsConstructo1r
+@AllArgsConstructor
 class SampleDto {
     private String name;
     private int age;
