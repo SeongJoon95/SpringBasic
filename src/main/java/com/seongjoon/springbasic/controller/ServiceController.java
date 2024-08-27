@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.seongjoon.springbasic.service.BasicService;
-import com.seongjoon.springbasic.service.implement.BasicServiceImplement;
+// import com.seongjoon.springbasic.service.implement.BasicServiceImplement;
 
 @RestController
 @RequestMapping("/service")
