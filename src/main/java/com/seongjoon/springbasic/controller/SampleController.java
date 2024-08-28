@@ -1,6 +1,8 @@
 package com.seongjoon.springbasic.controller;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +13,9 @@ import com.seongjoon.springbasic.service.SampleService;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.GetMapping;
+// import org.springframework.web.bind.annotation.RequestParam;
+
 
 @RestController
 @RequestMapping("/sample")
@@ -28,4 +33,20 @@ public class SampleController {
         ResponseEntity<String> response = sampleService.postSample1(requestBody);
         return response;
     }
+
+    // DELETE http://localhost:4000/sample/홍길동
+    @DeleteMapping("/{sampleId}")
+    public ResponseEntity<String> deleteSample1 (
+        @PathVariable("sampleId") String sampleId
+    ) {
+        ResponseEntity<String> response = sampleService.deleteSample1(sampleId);
+        return response;
+    }
+    
+    @GetMapping("")
+    public ResponseEntity<String> queryMethod() {
+        ResponseEntity<String> response = sampleService.qureString();
+        return response;
+    }
+    
 }
