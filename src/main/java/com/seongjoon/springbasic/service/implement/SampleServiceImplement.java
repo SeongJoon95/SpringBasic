@@ -5,6 +5,9 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 import com.seongjoon.springbasic.dto.PostSample1RequestDto;
 import com.seongjoon.springbasic.entity.SampleTable1Entity;
 import com.seongjoon.springbasic.entity.SampleUserEntity;
@@ -79,6 +82,12 @@ public class SampleServiceImplement implements SampleService {
     public String getJwt(String name) {
         String jwt = jwtProvider.create(name);
         return jwt;
+    }
+
+    @Override
+    public String validateJwt(String jwt) {
+        String subject = jwtProvider.validate(jwt); 
+        return subject;
     }
     
 }

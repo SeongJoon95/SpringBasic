@@ -56,5 +56,13 @@ public class SampleController {
         String response = sampleService.getJwt(name);
         return response;
     }
+
+    @PostMapping("/jwt")
+    public String validateJwt(
+        @RequestBody String jwt
+    ) {
+        String response = sampleService.validateJwt(jwt);
+        return response;
+    }
     
 }
