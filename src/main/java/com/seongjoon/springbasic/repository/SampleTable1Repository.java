@@ -14,7 +14,7 @@ import com.seongjoon.springbasic.entity.SampleTable1Entity;
 @Repository
 public interface SampleTable1Repository 
 // JpaRepository<T,ID> 인터페이스
-// - JAP 기반의 Repository를 구현하는 주요 인터페이스
+// - JPA 기반의 Repository를 구현하는 주요 인터페이스
 // - 기본 CRUD 기능 및 정렬 기능 등을 포함
 // - JPA 기반의 Repository를 생성할땐 필수로 상속해야함
 // - 매개타입 T : 해당 Repository가 어떤 Entitiy의 Repository인지 지정

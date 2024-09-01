@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+// import org.springframework.web.bind.annotation.PostMapping;
+// import org.springframework.web.bind.annotation.RequestBody;
 
 import com.seongjoon.springbasic.dto.PostSample1RequestDto;
 import com.seongjoon.springbasic.entity.SampleTable1Entity;
@@ -22,9 +22,9 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class SampleServiceImplement implements SampleService {
     
-    private final JwtProvider jwtProvider;
-    private final SampleUserRepository sampleUserRepository;
     private final SampleTable1Repository sampleTable1Repository;
+    private final SampleUserRepository sampleUserRepository;
+    private final JwtProvider jwtProvider;
 
     @Override
     public ResponseEntity<String> postSample1(PostSample1RequestDto dto) {
