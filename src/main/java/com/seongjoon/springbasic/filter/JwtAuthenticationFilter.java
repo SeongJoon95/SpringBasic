@@ -27,6 +27,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 
+// 완벽히 이해해야 함❤
 // filter:
 // - 서버로직과 서블릿 사이에서 http request에 대한 사전 검사 작업을 수행하는 영역
 // - filter에서 걸러진 request는 서블릿까지 도달하지 못하고 reject 됨 
