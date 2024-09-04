@@ -47,6 +47,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter{
         try {
             // 1. request 객체에서 token 가져오기
             String token = parseBearerToken(request);
+            
             if (token == null) {
                 filterChain.doFilter(request, response);
                 return;

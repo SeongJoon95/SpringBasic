@@ -27,15 +27,9 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 
 // Spring Web 보안 설정
-// @Configurable:
-// - Spring Bean으로 등록되지 않은 클래스에서 @Autowired를 사용할 수 있도록 하는 어노테이션
-@Configurable
-// @Configuration:
-// - 생성자나 '메서드'가 호출 시에 Spring Bean으로 등록되게 하는 어노테이션
-@Configuration
-// @EnableWebSecurity:
-// - Web Security 설정을 지원하는 어노테이션
-@EnableWebSecurity
+@Configurable // : Spring Bean으로 등록되지 않은 클래스에서 @Autowired를 사용할 수 있도록 하는 어노테이션
+@Configuration // : 생성자나 '메서드'가 호출 시에 Spring Bean으로 등록되게 하는 어노테이션
+@EnableWebSecurity // Web Security 설정을 지원하는 어노테이션
 @RequiredArgsConstructor // 모든 필드에 대해 생성자를 자동으로 생성
 public class WebSecurityConfig {
     
@@ -47,6 +41,7 @@ public class WebSecurityConfig {
         // Class::method
         // - 메소드 참조, 특정 클래스의 메서드를 참조할 때 사용
         // - 매개변수로 메서드를 전달할 때 자주 사용
+        
         
         security
             // Basic 인증 방식에 대한 설정
@@ -86,7 +81,7 @@ public class WebSecurityConfig {
                 // permitAll() : 모든 클라이언트가 접근할 수 있도록 지정
                 // hasRole(권한): 특정 권한을 가진 클라이언트만 접근할 수 있도록 지정
                 // authenticated(): 인증된 모든 클라이언트가 접근할 수 있도록 지정
-                .requestMatchers("/anyone/**").permitAll()
+                .requestMatchers("/anyone/**", "/auth/**").permitAll()
                 .requestMatchers(HttpMethod.GET,"/sample/jwt/*").permitAll() // 인증없이도 가능하게
                 .requestMatchers("/admin/**").hasRole("ADMIN")
                 .requestMatchers("/service").hasRole("ADMIN")
