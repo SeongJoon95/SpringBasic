@@ -20,6 +20,8 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import com.seongjoon.springbasic.filter.JwtAuthenticationFilter;
+import com.seongjoon.springbasic.handler.OAuth2SuccessHandler;
+import com.seongjoon.springbasic.service.implement.OAuth2UserServiceImplement;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -33,6 +35,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor // 모든 필드에 대해 생성자를 자동으로 생성
 public class WebSecurityConfig {
     
+    private final  OAuth2SuccessHandler oAuth2SuccessHandler;
+    private final OAuth2UserServiceImplement oAuth2UserSirvice;
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
     @Bean
@@ -81,7 +85,7 @@ public class WebSecurityConfig {
                 // permitAll() : 모든 클라이언트가 접근할 수 있도록 지정
                 // hasRole(권한): 특정 권한을 가진 클라이언트만 접근할 수 있도록 지정
                 // authenticated(): 인증된 모든 클라이언트가 접근할 수 있도록 지정
-                .requestMatchers("/anyone/**", "/auth/**").permitAll()
+                .requestMatchers("/anyone/**", "/auth/**","/oauth2/**").permitAll()
                 .requestMatchers(HttpMethod.GET,"/sample/jwt/*").permitAll() // 인증없이도 가능하게
                 .requestMatchers("/admin/**").hasRole("ADMIN")
                 .requestMatchers("/service").hasRole("ADMIN")
@@ -92,10 +96,19 @@ public class WebSecurityConfig {
                 .anyRequest().authenticated() 
             )
             
+            // OAuth2 인증 처리
+            .oauth2Login(oauth2 -> oauth2
+                .authorizationEndpoint(endPoint -> endPoint.baseUri("/auth/sns"))
+                .redirectionEndpoint(endPoint -> endPoint.baseUri("/oauth2/callback/*"))
+                .userInfoEndpoint(endPoint -> endPoint.userService(oAuth2UserSirvice))
+                .successHandler(oAuth2SuccessHandler)
+            )
+
             // 인증 및 인가 과정에서 발생한 예외를 직접 처리
             .exceptionHandling(exceptionHandling -> exceptionHandling
                 .authenticationEntryPoint(new FailedAuthenticationEntryPoint())
             )
+
             // jwtAuthenticationFilter를 UsernamePasswordAuthenticationFilter 이전에 등록
             .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
         
